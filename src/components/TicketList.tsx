@@ -31,7 +31,7 @@ export const TicketList: React.FC<TicketListProps> = ({
 }) => (
   <Row gutter={[16, 16]} style={{ marginTop: 24 }}>
     {tickets.map((ticket) => (
-      <Col span={8} key={ticket.tier}>
+      <Col xs={24} sm={12} md={8} lg={8} key={ticket.tier}>
         <TicketCard
           ticket={ticket}
           quantity={quantities[ticket.tier]}
