@@ -1,13 +1,21 @@
 import React from "react";
-import { Row, Col, Typography } from "antd";
+import { Typography } from "antd";
 import { useTickets } from "@/hooks/useTickets";
 import { useTicketBooking } from "@/hooks/useTicketBooking";
-import { TicketCard } from "@/components/TicketCard";
 import { TEXTS, MESSAGES } from "@/constants";
 import { HomePageProps } from "@/types/components";
+import { ErrorDisplay } from "@/components/ErrorDisplay";
+import { LoadingDisplay } from "@/components/LoadingDisplay";
+import { TicketList } from "@/components/TicketList";
 
 export const HomePage: React.FC<HomePageProps> = ({ userId }) => {
-  const { data: tickets = [], isLoading } = useTickets();
+  const {
+    data: tickets = [],
+    isLoading,
+    error,
+    isError,
+    refetch,
+  } = useTickets();
   const {
     quantities,
     successMessages,
@@ -28,24 +36,26 @@ export const HomePage: React.FC<HomePageProps> = ({ userId }) => {
       <Typography.Paragraph style={{ textAlign: "center" }}>
         {TEXTS.USER_ID_LABEL} {userId}
       </Typography.Paragraph>
-      <Row gutter={[16, 16]} style={{ marginTop: 24 }}>
-        {isLoading
-          ? MESSAGES.LOADING.LOADING_TICKETS
-          : tickets.map((ticket) => (
-              <Col span={8} key={ticket.tier}>
-                <TicketCard
-                  ticket={ticket}
-                  quantity={quantities[ticket.tier]}
-                  isBooking={
-                    bookingTier === ticket.tier && bookMutation.isPending
-                  }
-                  onQuantityChange={handleQuantityChange}
-                  onBook={handleBook}
-                  successMessage={successMessages[ticket.tier]}
-                />
-              </Col>
-            ))}
-      </Row>
+      {isError ? (
+        <ErrorDisplay
+          message="Failed to Load Tickets"
+          description={
+            (error as Error)?.message || MESSAGES.ERROR.FETCH_TICKETS_FAILED
+          }
+          onRetry={refetch}
+        />
+      ) : isLoading ? (
+        <LoadingDisplay message={MESSAGES.LOADING.LOADING_TICKETS} />
+      ) : (
+        <TicketList
+          tickets={tickets}
+          quantities={quantities}
+          successMessages={successMessages}
+          isBooking={(tier) => bookingTier === tier && bookMutation.isPending}
+          onQuantityChange={handleQuantityChange}
+          onBook={handleBook}
+        />
+      )}
     </div>
   );
 };
