@@ -32,3 +32,8 @@ axiosClient.interceptors.response.use(
 );
 
 export { axiosClient };
+
+/**
+ * Configured Axios instance for API communication.
+ * Includes base URL configuration, default headers, and request/response interceptors for logging.
+ */

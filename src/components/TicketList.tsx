@@ -12,6 +12,15 @@ interface TicketListProps {
   onBook: (tier: TicketTier) => void;
 }
 
+/**
+ * Component that renders a list of ticket cards in a responsive grid layout.
+ * @param tickets - Array of ticket objects to display
+ * @param quantities - Current selected quantities for each ticket tier
+ * @param successMessages - Success messages for each ticket tier after booking
+ * @param isBooking - Function to check if a specific tier is currently being booked
+ * @param onQuantityChange - Handler for quantity changes
+ * @param onBook - Handler for booking tickets
+ */
 export const TicketList: React.FC<TicketListProps> = ({
   tickets,
   quantities,

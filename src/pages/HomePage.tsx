@@ -8,6 +8,11 @@ import { ErrorDisplay } from "@/components/ErrorDisplay";
 import { LoadingDisplay } from "@/components/LoadingDisplay";
 import { TicketList } from "@/components/TicketList";
 
+/**
+ * Main page component for the ticket booking application.
+ * Displays available tickets, handles booking logic, and manages loading/error states.
+ * @param userId - The ID of the current user for booking operations
+ */
 export const HomePage: React.FC<HomePageProps> = ({ userId }) => {
   const {
     data: tickets = [],

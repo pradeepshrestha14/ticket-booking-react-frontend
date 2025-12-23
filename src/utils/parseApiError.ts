@@ -2,9 +2,12 @@
 import { AxiosError } from "axios";
 import { ApiError, ApiErrorResponse } from "@/types/api-error";
 
-/*
-* Utility function to parse API errors from Axios responses.
-*/
+/**
+ * Utility function to parse API errors from Axios responses.
+ * Handles different error types and provides user-friendly error messages.
+ * @param error - The error object from a failed API request
+ * @returns Error object with appropriate message based on error type
+ */
 export function parseApiError(error: unknown): Error {
     if (
         typeof error === "object" &&
