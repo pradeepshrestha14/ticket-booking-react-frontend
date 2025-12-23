@@ -82,6 +82,8 @@ src/
 - Node.js (v18 or higher)
 - npm or yarn
 - Backend API server: [ticket-booking-node-backend](https://github.com/pradeepshrestha14/ticket-booking-node-backend) running on `http://localhost:4000` (or set `VITE_API_URL`)
+- **API Documentation**: [Swagger API Docs](https://ticket-booking-node-backend.onrender.com/api-docs/) for available endpoints and testing
+  - _If issues accessing hosted docs, clone and run the [backend repo](https://github.com/pradeepshrestha14/ticket-booking-node-backend) locally, then visit `http://localhost:4000/api-docs`_
 
 ### Installation
 
