@@ -1,5 +1,5 @@
 import { Card, Typography, InputNumber, Button, Tag } from "antd";
-import { ticketTierIconMap } from "@/utils/ticketIcons";
+import { getTierIcon } from "@/utils/ticketIcons";
 import React from "react";
 import { TEXTS, MESSAGES } from "@/constants";
 import { TicketCardProps } from "@/types/components";
@@ -26,8 +26,8 @@ export const TicketCard: React.FC<TicketCardProps> = React.memo(
 
     return (
       <Card
-        title={ticket.tier}
-        extra={ticketTierIconMap[ticket.tier]}
+        title={ticket.label}
+        extra={getTierIcon(ticket.tier)}
         style={{ textAlign: "center" }}
       >
         <Typography.Title level={5}>${ticket.price}</Typography.Title>

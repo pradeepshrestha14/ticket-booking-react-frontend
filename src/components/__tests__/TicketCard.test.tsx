@@ -4,7 +4,8 @@ import { Ticket } from "@/types/api";
 
 const mockTicket: Ticket = {
   id: 1,
-  tier: "VIP" as const,
+  tier: "VIP",
+  label: "VIP Experience",
   price: 100,
   availableQuantity: 10,
   totalQuantity: 50,
@@ -23,7 +24,7 @@ describe("TicketCard", () => {
       />
     );
 
-    expect(screen.getByText("VIP")).toBeInTheDocument();
+    expect(screen.getByText("VIP Experience")).toBeInTheDocument();
     expect(screen.getByText("$100")).toBeInTheDocument();
     expect(screen.getByText("Available: 10")).toBeInTheDocument();
   });

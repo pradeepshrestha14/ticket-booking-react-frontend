@@ -1,15 +1,15 @@
 import React from "react";
 import { Row, Col } from "antd";
 import { TicketCard } from "./TicketCard";
-import { Ticket, TicketTier } from "@/types/api";
+import { Ticket } from "@/types/api";
 
 interface TicketListProps {
   tickets: Ticket[];
-  quantities: Record<TicketTier, number>;
-  successMessages: Record<TicketTier, string | null>;
-  isBooking: (tier: TicketTier) => boolean;
-  onQuantityChange: (tier: TicketTier, value: number) => void;
-  onBook: (tier: TicketTier) => void;
+  quantities: Record<string, number>;
+  successMessages: Record<string, string | null>;
+  isBooking: (tier: string) => boolean;
+  onQuantityChange: (tier: string, value: number) => void;
+  onBook: (tier: string) => void;
 }
 
 /**

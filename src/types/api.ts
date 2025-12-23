@@ -7,11 +7,12 @@ export interface ApiResponse<T> {
     };
 }
 
-export type TicketTier = "VIP" | "FRONT_ROW" | "GA";
-
+// Interface for API ticket data
+// Frontend is completely unaware of specific tier types - accepts any tier from backend
 export interface Ticket {
     id: number;
-    tier: TicketTier;
+    tier: string; // Backend controls tier names completely (used for API calls)
+    label: string; // User-friendly display name for the ticket tier
     price: number;
     totalQuantity: number;
     availableQuantity: number;
@@ -19,12 +20,12 @@ export interface Ticket {
 
 export interface BookTicketsRequest {
     userId: string;
-    tier: TicketTier;
+    tier: string; // Allow any string for flexibility
     quantity: number;
 }
 
 export interface BookTicketsResponse {
-    tier: TicketTier;
+    tier: string;
     bookedQuantity: number;
     remainingQuantity: number;
     totalAmount: number;

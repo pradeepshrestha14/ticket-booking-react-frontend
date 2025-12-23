@@ -194,6 +194,52 @@ For senior-level interview assignments, comprehensive unit testing demonstrates:
 - **Rationale**: Clear separation of concerns; easier to manage different tech stacks.
 - **Design Intent**: For complex applications, a monorepo could improve code sharing and atomic changes across services.
 
+### Dynamic Ticket Tier System
+
+- **Chosen**: Backend-driven, dynamic tier handling with no hardcoded tier types.
+- **Tradeoff**: Slightly more complex icon/color generation; no tier-specific customization.
+- **Rationale**: Maximum scalability - frontend adapts to any number of tiers without code changes.
+- **Design Intent**: Demonstrate scalable architecture where business logic lives in backend.
+- **Implementation**: Hash-based color generation ensures consistent, professional appearance.
+- **Benefits**:
+  - Zero frontend changes when backend adds new tiers (e.g., "PREMIUM", "STUDENT", "VIP")
+  - Automatic visual differentiation with consistent colors
+  - Future-proof for dynamic pricing models and tier structures
+  - Clean separation of concerns between frontend presentation and backend business logic
+
+### Hardcoded vs Dynamic Approach
+
+**❌ Hardcoded Approach (Anti-pattern)**:
+
+```typescript
+// BAD: Limits scalability, requires code changes for new tiers
+const TICKET_TIERS = ["VIP", "FRONT_ROW", "GA"] as const;
+type TicketTier = (typeof TICKET_TIERS)[number];
+
+const tierIcons = {
+  VIP: <CrownOutlined />,
+  FRONT_ROW: <StarOutlined />,
+  GA: <UserOutlined />,
+};
+```
+
+**✅ Dynamic Approach (Scalable)**:
+
+```typescript
+// GOOD: Adapts to any backend tiers automatically
+const getTierIcon = (tier: string) => {
+  const color = generateColorFromName(tier);
+  return <CreditCardOutlined style={{ color }} />;
+};
+```
+
+**Why Dynamic Wins**:
+
+- **Scalability**: Handle unlimited tiers without frontend changes
+- **Maintainability**: No need to update frontend when business adds new ticket types
+- **Flexibility**: Backend controls tier definitions, pricing, and availability
+- **Future-Proof**: Supports dynamic pricing, seasonal tiers, and custom event configurations
+
 ## Scalability Considerations
 
 ### Current Limitations

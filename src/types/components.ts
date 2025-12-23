@@ -5,8 +5,8 @@ export interface TicketCardProps {
     quantity: number;
     isBooking: boolean;
     successMessage: string | null;
-    onQuantityChange: (tier: import("@/types/api").TicketTier, value: number) => void;
-    onBook: (tier: import("@/types/api").TicketTier) => void;
+    onQuantityChange: (tier: string, value: number) => void;
+    onBook: (tier: string) => void;
 }
 
 export interface HomePageProps {

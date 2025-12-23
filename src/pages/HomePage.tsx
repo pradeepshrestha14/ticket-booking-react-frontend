@@ -28,7 +28,7 @@ export const HomePage: React.FC<HomePageProps> = ({ userId }) => {
     bookMutation,
     handleQuantityChange,
     handleBook,
-  } = useTicketBooking({ userId });
+  } = useTicketBooking({ userId, tickets });
 
   return (
     <div style={{ maxWidth: 900, margin: "0 auto", padding: 24 }}>

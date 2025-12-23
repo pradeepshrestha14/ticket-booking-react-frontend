@@ -18,8 +18,6 @@ export function parseApiError(error: unknown): Error {
 
         const apiError = axiosError.response?.data?.error as ApiError;
 
-        console.error("Parsed API Error:", apiError);
-
         if (apiError) {
             // Handle specific error cases
             if (apiError.code === "PAYMENT_FAILED") {

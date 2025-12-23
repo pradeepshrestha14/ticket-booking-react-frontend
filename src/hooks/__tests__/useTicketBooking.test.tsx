@@ -21,15 +21,45 @@ const createWrapper = () => {
   );
 };
 
+const mockTickets = [
+  {
+    id: 1,
+    tier: "VIP",
+    label: "VIP Experience",
+    price: 100,
+    totalQuantity: 10,
+    availableQuantity: 10,
+  },
+  {
+    id: 2,
+    tier: "FRONT_ROW",
+    label: "Front Row Seats",
+    price: 75,
+    totalQuantity: 20,
+    availableQuantity: 20,
+  },
+  {
+    id: 3,
+    tier: "GA",
+    label: "General Admission",
+    price: 50,
+    totalQuantity: 50,
+    availableQuantity: 50,
+  },
+];
+
 describe("useTicketBooking", () => {
   beforeEach(() => {
     jest.clearAllMocks();
   });
 
   it("should update quantity", () => {
-    const { result } = renderHook(() => useTicketBooking({ userId: "user1" }), {
-      wrapper: createWrapper(),
-    });
+    const { result } = renderHook(
+      () => useTicketBooking({ userId: "user1", tickets: mockTickets }),
+      {
+        wrapper: createWrapper(),
+      }
+    );
 
     act(() => {
       result.current.handleQuantityChange("VIP", 5);
@@ -44,9 +74,12 @@ describe("useTicketBooking", () => {
       data: { data: mockData },
     });
 
-    const { result } = renderHook(() => useTicketBooking({ userId: "user1" }), {
-      wrapper: createWrapper(),
-    });
+    const { result } = renderHook(
+      () => useTicketBooking({ userId: "user1", tickets: mockTickets }),
+      {
+        wrapper: createWrapper(),
+      }
+    );
 
     act(() => {
       result.current.handleQuantityChange("VIP", 5);
