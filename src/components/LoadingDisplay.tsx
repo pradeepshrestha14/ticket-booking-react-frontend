@@ -5,6 +5,10 @@ interface LoadingDisplayProps {
   message?: string;
 }
 
+/**
+ * Component to display a loading spinner with optional message.
+ * @param message - The loading message to display.
+ */
 export const LoadingDisplay: React.FC<LoadingDisplayProps> = ({
   message = "Loading...",
 }) => (

@@ -4,6 +4,15 @@ import React from "react";
 import { TEXTS, MESSAGES } from "@/constants";
 import { TicketCardProps } from "@/types/components";
 
+/**
+ * Component for displaying a ticket card with booking functionality.
+ * @param ticket - The ticket data.
+ * @param quantity - Current selected quantity.
+ * @param isBooking - Whether booking is in progress.
+ * @param successMessage - Success message after booking.
+ * @param onQuantityChange - Handler for quantity change.
+ * @param onBook - Handler for booking.
+ */
 export const TicketCard: React.FC<TicketCardProps> = React.memo(
   ({
     ticket,

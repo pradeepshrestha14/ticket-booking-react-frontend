@@ -5,6 +5,11 @@ import { BookTicketsRequest } from "@/types/api";
 import { TICKETS_QUERY_KEY } from "./useTickets";
 import { MESSAGES } from "@/constants";
 
+/**
+ * Custom hook to book tickets using React Query mutation.
+ * @param payload - The booking request data.
+ * @returns {UseMutationResult<void, Error, BookTicketsRequest>} The mutation result.
+ */
 export function useBookTickets() {
     const queryClient = useQueryClient();
 

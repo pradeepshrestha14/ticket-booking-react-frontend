@@ -7,6 +7,12 @@ interface ErrorDisplayProps {
   onRetry?: () => void;
 }
 
+/**
+ * Component to display error messages with optional retry button.
+ * @param message - The error message.
+ * @param description - Optional error description.
+ * @param onRetry - Optional retry handler.
+ */
 export const ErrorDisplay: React.FC<ErrorDisplayProps> = ({
   message,
   description,

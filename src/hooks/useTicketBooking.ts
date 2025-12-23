@@ -7,6 +7,11 @@ interface UseTicketBookingProps {
     userId: string;
 }
 
+/**
+ * Custom hook for managing ticket booking state and logic.
+ * @param userId - The ID of the user booking tickets.
+ * @returns Object containing state and handlers for ticket booking.
+ */
 export const useTicketBooking = ({ userId }: UseTicketBookingProps) => {
     const [quantities, setQuantities] = useState<Record<TicketTier, number>>({
         VIP: 0,

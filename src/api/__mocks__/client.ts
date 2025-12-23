@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_BASE_URL = process.env.VITE_API_URL || 'http://localhost:4000';
+const API_BASE_URL = 'http://localhost:4000';
 
 const axiosClient = axios.create({
     baseURL: API_BASE_URL,
@@ -20,13 +20,13 @@ axiosClient.interceptors.request.use(
     }
 );
 
-// Response interceptor for logging
+// Response interceptor for error handling
 axiosClient.interceptors.response.use(
     (response) => {
         return response;
     },
     (error) => {
-        console.error('API Response Error:', error.response?.status, error.response?.data || error.message);
+        console.error('API Response Error:', error);
         return Promise.reject(error);
     }
 );
