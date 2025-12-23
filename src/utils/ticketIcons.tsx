@@ -1,5 +1,5 @@
 import { UserOutlined, StarOutlined, CrownOutlined } from "@ant-design/icons";
-import { TicketTier } from "../types/api";
+import { TicketTier } from "@/types/api";
 import React from "react";
 
 // No conditionals in JSX

@@ -10,6 +10,7 @@ export interface ApiResponse<T> {
 export type TicketTier = "VIP" | "FRONT_ROW" | "GA";
 
 export interface Ticket {
+    id: number;
     tier: TicketTier;
     price: number;
     totalQuantity: number;
