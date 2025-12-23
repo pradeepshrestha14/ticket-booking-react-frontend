@@ -42,7 +42,7 @@ export const useTicketBooking = ({ userId }: UseTicketBookingProps) => {
                 onSuccess: (data: BookTicketsResponse) => {
                     setSuccessMessages((prev) => ({
                         ...prev,
-                        [tier]: MESSAGES.SUCCESS.BOOKING_SUCCESS(quantity, tier, quantity * data.totalAmount),
+                        [tier]: MESSAGES.SUCCESS.BOOKING_SUCCESS(quantity, tier, data?.totalAmount),
                     }));
                     setQuantities((prev) => ({ ...prev, [tier]: 0 }));
                 },
