@@ -1,6 +1,7 @@
 import { useState, useCallback } from "react";
 import { useBookTickets } from "./useBookTickets";
 import { BookTicketsResponse, TicketTier } from "@/types/api";
+import { MESSAGES } from "@/constants";
 
 interface UseTicketBookingProps {
     userId: string;
@@ -36,7 +37,7 @@ export const useTicketBooking = ({ userId }: UseTicketBookingProps) => {
                 onSuccess: (data: BookTicketsResponse) => {
                     setSuccessMessages((prev) => ({
                         ...prev,
-                        [tier]: `Successfully booked ${quantity} ${tier} ticket(s)! Total: $${data.totalAmount}`,
+                        [tier]: MESSAGES.SUCCESS.BOOKING_SUCCESS(quantity, tier, quantity * data.totalAmount),
                     }));
                     setQuantities((prev) => ({ ...prev, [tier]: 0 }));
                 },

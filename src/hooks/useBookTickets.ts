@@ -3,6 +3,7 @@ import { message } from "antd";
 import { bookTickets } from "@/api/tickets";
 import { BookTicketsRequest } from "@/types/api";
 import { TICKETS_QUERY_KEY } from "./useTickets";
+import { MESSAGES } from "@/constants";
 
 export function useBookTickets() {
     const queryClient = useQueryClient();
@@ -13,7 +14,7 @@ export function useBookTickets() {
             message.error(error.message);
         },
         onSuccess: () => {
-            message.success("Tickets booked successfully!");
+            message.success(MESSAGES.SUCCESS.TICKETS_BOOKED);
         },
         onSettled: () => {
             queryClient.invalidateQueries({ queryKey: TICKETS_QUERY_KEY });

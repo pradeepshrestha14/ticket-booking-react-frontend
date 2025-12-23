@@ -1,10 +1,9 @@
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import { HomePage } from "./pages/HomePage";
+import { HomePage } from "@/pages/HomePage";
 import { Layout, Typography } from "antd";
+import { USER_ID } from "@/constants";
 
 const { Header, Content } = Layout;
-
-const USER_ID = "user-1766388127080";
 
 const App = () => {
   return (

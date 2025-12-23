@@ -1,21 +1,10 @@
 import { Card, Typography, InputNumber, Button, Tag } from "antd";
-import { Ticket, TicketTier } from "@/types/api";
 import { ticketTierIconMap } from "@/utils/ticketIcons";
 import React from "react";
+import { TEXTS, MESSAGES } from "@/constants";
+import { TicketCardProps } from "@/types/components";
 
-interface Props {
-  ticket: Ticket;
-  quantity: number;
-  isBooking: boolean;
-  successMessage: string | null;
-  onQuantityChange: (tier: TicketTier, value: number) => void;
-  onBook: (tier: TicketTier) => void;
-}
-
-// Fully reusable
-//  No API logic
-//  Easy snapshot testing
-export const TicketCard: React.FC<Props> = React.memo(
+export const TicketCard: React.FC<TicketCardProps> = React.memo(
   ({
     ticket,
     quantity,
@@ -37,7 +26,7 @@ export const TicketCard: React.FC<Props> = React.memo(
         <p>Available: {ticket.availableQuantity}</p>
 
         {isSoldOut ? (
-          <Tag color="orange">Sold Out</Tag>
+          <Tag color="orange">{TEXTS.SOLD_OUT}</Tag>
         ) : (
           <>
             <InputNumber
@@ -53,7 +42,9 @@ export const TicketCard: React.FC<Props> = React.memo(
               disabled={quantity === 0 || isBooking}
               onClick={() => onBook(ticket.tier)}
             >
-              {isBooking ? "Booking..." : `Book ${quantity} Tickets`}
+              {isBooking
+                ? MESSAGES.LOADING.BOOKING
+                : TEXTS.BOOK_BUTTON(quantity)}
             </Button>
           </>
         )}

@@ -3,10 +3,8 @@ import { Row, Col, Typography } from "antd";
 import { useTickets } from "@/hooks/useTickets";
 import { useTicketBooking } from "@/hooks/useTicketBooking";
 import { TicketCard } from "@/components/TicketCard";
-
-interface HomePageProps {
-  userId: string;
-}
+import { TEXTS, MESSAGES } from "@/constants";
+import { HomePageProps } from "@/types/components";
 
 export const HomePage: React.FC<HomePageProps> = ({ userId }) => {
   const { data: tickets = [], isLoading } = useTickets();
@@ -22,17 +20,17 @@ export const HomePage: React.FC<HomePageProps> = ({ userId }) => {
   return (
     <div style={{ maxWidth: 900, margin: "0 auto", padding: 24 }}>
       <Typography.Title level={2} style={{ textAlign: "center" }}>
-        Available Tickets
+        {TEXTS.PAGE_TITLE}
       </Typography.Title>
       <Typography.Paragraph style={{ textAlign: "center" }}>
-        Book your tickets for the upcoming event
+        {TEXTS.PAGE_DESCRIPTION}
       </Typography.Paragraph>
       <Typography.Paragraph style={{ textAlign: "center" }}>
-        Your User ID: {userId}
+        {TEXTS.USER_ID_LABEL} {userId}
       </Typography.Paragraph>
       <Row gutter={[16, 16]} style={{ marginTop: 24 }}>
         {isLoading
-          ? "Loading tickets..."
+          ? MESSAGES.LOADING.LOADING_TICKETS
           : tickets.map((ticket) => (
               <Col span={8} key={ticket.tier}>
                 <TicketCard
