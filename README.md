@@ -2,6 +2,10 @@
 
 A modern, scalable React application for booking event tickets, built with TypeScript and Vite. This frontend provides a user-friendly interface to view available tickets and book them for different tiers (VIP, FRONT_ROW, GA).
 
+## 📚 Documentation
+
+- **[🏗️ Architecture & Design Decisions](ARCHITECTURE.md)** - Comprehensive guide covering system architecture, design patterns, tradeoffs, scalability considerations, and technical decisions
+
 ## 🚀 Live Demo
 
 **Try it out**: [https://ticket-booking-react-frontend.onrender.com/](https://ticket-booking-react-frontend.onrender.com/)
