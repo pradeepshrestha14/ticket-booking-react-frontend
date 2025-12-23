@@ -1,6 +1,6 @@
 
 import { AxiosError } from "axios";
-import { ApiError, ApiErrorResponse } from "../types/api-error";
+import { ApiError, ApiErrorResponse } from "@/types/api-error";
 
 /*
 * Utility function to parse API errors from Axios responses.

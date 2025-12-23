@@ -1,76 +1,23 @@
-import React, { useState } from "react";
+import React from "react";
 import { Row, Col, Typography } from "antd";
-import { useTickets } from "../hooks/useTickets";
-import { useBookTickets } from "../hooks/useBookTickets";
-import { BookTicketsResponse, TicketTier } from "../types/api";
-import { TicketCard } from "../components/TicketCard";
+import { useTickets } from "@/hooks/useTickets";
+import { useTicketBooking } from "@/hooks/useTicketBooking";
+import { TicketCard } from "@/components/TicketCard";
 
-const USER_ID = "user-1766388127080";
+interface HomePageProps {
+  userId: string;
+}
 
-export const HomePage: React.FC = () => {
+export const HomePage: React.FC<HomePageProps> = ({ userId }) => {
   const { data: tickets = [], isLoading } = useTickets();
-  const [bookingTier, setBookingTier] = useState<TicketTier | null>(null);
-  const [successMessages, setSuccessMessages] = useState<
-    Record<TicketTier, string | null>
-  >({
-    VIP: null,
-    FRONT_ROW: null,
-    GA: null,
-  });
-
-  const bookMutation = useBookTickets();
-
-  const [quantities, setQuantities] = useState<Record<TicketTier, number>>({
-    VIP: 0,
-    FRONT_ROW: 0,
-    GA: 0,
-  });
-
-  const handleQuantityChange = (tier: TicketTier, value: number) => {
-    setQuantities((prev) => ({ ...prev, [tier]: value }));
-  };
-
-  const handleBook = (tier: TicketTier) => {
-    const quantity = quantities[tier];
-
-    if (quantity === 0) return;
-
-    setBookingTier(tier);
-
-    bookMutation.mutate(
-      {
-        tier,
-        quantity,
-        userId: USER_ID,
-      },
-      {
-        onSuccess: (data: BookTicketsResponse) => {
-          // set per-tier success message with total price
-          setSuccessMessages((prev) => ({
-            ...prev,
-            [tier]: `Successfully booked ${quantity} ${tier} ticket(s)! Total: $${
-              quantity * data.totalAmount
-            }`,
-          }));
-
-          //  reset quantity for this tier only
-          setQuantities((prev) => ({
-            ...prev,
-            [tier]: 0,
-          }));
-        },
-        onSettled: () => {
-          setTimeout(() => {
-            setSuccessMessages((prev) => ({
-              ...prev,
-              [tier]: null,
-            }));
-          }, 7000);
-          setBookingTier(null);
-        },
-      }
-    );
-  };
+  const {
+    quantities,
+    successMessages,
+    bookingTier,
+    bookMutation,
+    handleQuantityChange,
+    handleBook,
+  } = useTicketBooking({ userId });
 
   return (
     <div style={{ maxWidth: 900, margin: "0 auto", padding: 24 }}>
@@ -81,7 +28,7 @@ export const HomePage: React.FC = () => {
         Book your tickets for the upcoming event
       </Typography.Paragraph>
       <Typography.Paragraph style={{ textAlign: "center" }}>
-        Your User ID: {USER_ID}
+        Your User ID: {userId}
       </Typography.Paragraph>
       <Row gutter={[16, 16]} style={{ marginTop: 24 }}>
         {isLoading

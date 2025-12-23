@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
-import { getAllTickets } from "../api/tickets";
-import { Ticket } from "../types/api";
+import { getAllTickets } from "@/api/tickets";
+import { Ticket } from "@/types/api";
 
 export const TICKETS_QUERY_KEY = ["tickets"];
 

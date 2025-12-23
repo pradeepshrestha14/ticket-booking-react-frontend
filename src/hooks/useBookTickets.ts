@@ -1,7 +1,7 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { message } from "antd";
-import { bookTickets } from "../api/tickets";
-import { BookTicketsRequest } from "../types/api";
+import { bookTickets } from "@/api/tickets";
+import { BookTicketsRequest } from "@/types/api";
 import { TICKETS_QUERY_KEY } from "./useTickets";
 
 export function useBookTickets() {
