@@ -4,7 +4,7 @@ A modern, scalable React application for booking event tickets, built with TypeS
 
 ## 📚 Documentation
 
-- **[🏗️ Architecture & Design Decisions](ARCHITECTURE.md)** - Comprehensive guide covering system architecture, design patterns, tradeoffs, scalability considerations, and technical decisions
+- **[🏗️ Architecture & Design Decisions](ARCHITECTURAL_DECISIONS.md)** - Comprehensive guide covering system architecture, design patterns, tradeoffs, scalability considerations, and technical decisions
 
 ## 🚀 Live Demo
 
